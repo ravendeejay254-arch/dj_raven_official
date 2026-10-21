@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEEJAY RAVEN | Official Website & Booking</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#a855f7',
+                        neonGold: '#f59e0b',
+                        neonPink: '#ec4899',
+                        darkBg: '#05050a',
+                        darkCard: 'rgba(15, 15, 25, 0.8)',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                        'spin-slow': 'spin 10s linear infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(0, 243, 255, 0.4)' },
+                            '100%': { boxShadow: '0 0 30px rgba(168, 85, 247, 0.8)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #05050a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 28, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 243, 255, 0.35);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.8), 0 0 24px rgba(0, 243, 255, 0.4);
+        }
+
+        .text-glow-gold {
+            text-shadow: 0 0 12px rgba(245, 158, 11, 0.8), 0 0 24px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05050a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e1b4b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-neonPurple selection:text-white">
+
+    <!-- CANVAS PARTICLES BACKGROUND -->
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-darkBg/80 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-neonCyan via-neonPurple to-neonGold flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform p-0.5">
+                        <div class="w-full h-full bg-darkBg rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-compact-disc text-neonCyan text-xl animate-spin-slow"></i>
+                        </div>
+                    </div>
+                    <span class="font-display text-2xl font-black tracking-widest text-white group-hover:text-neonCyan transition-colors">
+                        DEEJAY <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonGold">RAVEN</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-300">
+                    <a href="#about" class="hover:text-neonCyan transition-colors py-2">About</a>
+                    <a href="#music" class="hover:text-neonCyan transition-colors py-2">Mixes</a>
+                    <a href="#youtube" class="hover:text-neonCyan transition-colors py-2">YouTube</a>
+                    <a href="#instagram" class="hover:text-neonCyan transition-colors py-2">Instagram</a>
+                    <a href="#availability" class="hover:text-neonCyan transition-colors py-2">Availability</a>
+                    <a href="#booking" class="hover:text-neonCyan transition-colors py-2">Bookings</a>
+                </nav>
+
+                <!-- Book CTA -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#booking" class="px-6 py-2.5 text-xs font-extrabold uppercase tracking-widest text-darkBg bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold rounded-full hover:shadow-[0_0_20px_rgba(0,243,255,0.7)] hover:scale-105 transition-all">
+                        <i class="fa-solid fa-calendar-check mr-2"></i> Book DJ Raven
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-gray-300 hover:text-white p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card border-b border-gray-800 px-6 pt-3 pb-6 space-y-4">
+            <a href="#about" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">About</a>
+            <a href="#music" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">Mixes & Player</a>
+            <a href="#youtube" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">YouTube Videos</a>
+            <a href="#instagram" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">Instagram Feed</a>
+            <a href="#availability" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">Availability Calendar</a>
+            <a href="#booking" class="mobile-link block text-sm font-bold uppercase tracking-wider hover:text-neonCyan">Book Event</a>
+            <a href="#booking" class="mobile-link block w-full text-center py-3 text-xs font-black uppercase tracking-widest text-darkBg bg-neonCyan rounded-full">
+                Book DJ Raven Now
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden z-10">
+        <!-- Ambient Radial Glows -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-neonPurple/25 via-neonCyan/20 to-neonGold/15 rounded-full blur-[140px] -z-10"></div>
+
+        <div class="max-w-5xl mx-auto text-center space-y-8">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-3 px-5 py-2 rounded-full glass-card border border-neonCyan/40 text-neonCyan text-xs font-black tracking-widest uppercase animate-float">
+                <span class="w-2.5 h-2.5 rounded-full bg-neonCyan animate-ping"></span>
+                <span>Official Live & Studio Performance Hub</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-display text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white uppercase leading-none">
+                DEEJAY <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold text-glow-cyan">
+                    RAVEN
+                </span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-gray-300 text-base sm:text-lg font-light leading-relaxed">
+                Premier Open-Format & Afro-Electronic DJ. Master of <span class="text-neonCyan font-semibold">Afrobeats</span>, <span class="text-neonPurple font-semibold">Amapiano</span>, <span class="text-neonGold font-semibold">Hip Hop</span>, <span class="text-neonPink font-semibold">Dancehall</span> & High-Energy Club Sets.
+            </p>
+
+            <!-- Hero Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#booking" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold text-darkBg font-black text-xs tracking-widest uppercase hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calendar-check text-base"></i> Book Now
+                </a>
+                <a href="#music" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card border border-gray-700 hover:border-neonCyan text-white font-black text-xs tracking-widest uppercase hover:shadow-[0_0_25px_rgba(0,243,255,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play text-neonCyan"></i> Listen Live Mixes
+                </a>
+                <a href="http://www.youtube.com/@deejay_raven_" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card border border-rose-500/40 text-rose-400 font-black text-xs tracking-widest uppercase hover:bg-rose-500/10 hover:shadow-[0_0_25px_rgba(244,63,94,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-youtube text-lg text-rose-500"></i> Watch on YouTube
+                </a>
+            </div>
+
+            <!-- Direct Social Links Quick Bar -->
+            <div class="pt-8 flex items-center justify-center space-x-6 text-gray-400">
+                <a href="https://www.instagram.com/deejay_raven.ke" target="_blank" class="hover:text-neonPink text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-instagram"></i></a>
+                <a href="http://www.youtube.com/@deejay_raven_" target="_blank" class="hover:text-rose-500 text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com" target="_blank" class="hover:text-neonCyan text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://soundcloud.com" target="_blank" class="hover:text-neonGold text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-soundcloud"></i></a>
+                <a href="https://mixcloud.com" target="_blank" class="hover:text-neonPurple text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-mixcloud"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & GENRES SECTION -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <!-- Animated Graphic Decks / Turntable -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-neonCyan via-neonPurple to-neonGold p-1 shadow-[0_0_50px_rgba(0,243,255,0.3)] animate-pulse-glow">
+                    <div class="w-full h-full bg-darkBg rounded-full flex items-center justify-center relative overflow-hidden">
+                        <!-- Vinyl Grooves -->
+                        <div class="w-[85%] h-[85%] rounded-full border border-gray-800 flex items-center justify-center animate-spin-slow">
+                            <div class="w-[70%] h-[70%] rounded-full border border-gray-800/60 flex items-center justify-center">
+                                <div class="w-[50%] h-[50%] rounded-full border border-gray-700 flex items-center justify-center">
+                                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-neonCyan to-neonGold flex items-center justify-center text-darkBg font-black text-xs">
+                                        RAVEN
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bio & Specializations -->
+            <div class="lg:col-span-7 space-y-6">
+                <span class="font-display text-xs font-bold tracking-widest text-neonCyan uppercase">Master of the Decks</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">THE SOUND OF <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-neonGold">DEEJAY RAVEN</span></h2>
+                <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                    Known for seamless harmonic mixing, high-energy crowd interactions, and unmatched rhythm control, Deejay Raven delivers electrifying club sets, festival showcases, corporate events, and exclusive private celebrations across Kenya and beyond.
+                </p>
+
+                <!-- Genre Badges -->
+                <div class="space-y-3 pt-2">
+                    <h4 class="text-xs font-extrabold uppercase tracking-widest text-gray-400">Genre Specializations</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-neonCyan border border-neonCyan/30">Afrobeats</span>
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-neonPurple border border-neonPurple/30">Amapiano</span>
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-neonGold border border-neonGold/30">Dancehall & Reggae</span>
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-neonPink border border-neonPink/30">Hip Hop & RnB</span>
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-emerald-400 border border-emerald-400/30">Deep & Electro House</span>
+                        <span class="px-4 py-2 rounded-xl glass-card text-xs font-bold text-sky-400 border border-sky-400/30">Gengetone & Afro House</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MUSIC & MIXES PLAYER SECTION -->
+    <section id="music" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="text-center space-y-3 mb-12">
+            <h2 class="font-display text-xs font-bold tracking-widest text-neonCyan uppercase">Audio Stream</h2>
+            <h3 class="text-3xl sm:text-5xl font-extrabold text-white uppercase">FEATURED MIXSETS & SESSIONS</h3>
+            <div class="w-20 h-1 bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <!-- Custom Interactive Player -->
+            <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row items-center gap-6">
+                    <!-- Artwork -->
+                    <div class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 group">
+                        <img id="currentTrackCover" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&q=80" alt="Mix Cover" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-compact-disc text-neonCyan text-4xl animate-spin-slow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Details & Visualizer -->
+                    <div class="flex-1 w-full text-center sm:text-left space-y-3">
+                        <span id="currentTrackGenre" class="px-3 py-1 text-[10px] font-black uppercase tracking-wider rounded-full bg-neonPurple/20 text-neonPurple border border-neonPurple/40">
+                            Afrobeats & Amapiano
+                        </span>
+                        <h4 id="currentTrackTitle" class="text-2xl font-black text-white truncate">Raven Vibe Session Vol. 4</h4>
+                        <p id="currentTrackArtist" class="text-xs text-gray-400">DJ Raven • Live Club Mix</p>
+
+                        <!-- Audio Visualizer Canvas -->
+                        <div class="w-full h-16 bg-darkBg/80 rounded-xl p-2 border border-gray-800 relative flex items-center">
+                            <canvas id="audioVisualizerCanvas" class="w-full h-full"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Progress Bar -->
+                <div class="mt-6 space-y-2">
+                    <div class="relative w-full h-2 bg-gray-800 rounded-full cursor-pointer" id="progressBarContainer">
+                        <div id="progressBar" class="h-full bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold rounded-full w-0 transition-all duration-100"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-400 font-mono">
+                        <span id="currentTime">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Player Controls -->
+                <div class="mt-6 flex items-center justify-between">
+                    <button id="shuffleBtn" class="text-gray-400 hover:text-neonCyan transition-colors p-2">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    
+                    <div class="flex items-center space-x-6">
+                        <button id="prevBtn" class="text-2xl text-white hover:text-neonCyan transition-colors">
+                            <i class="fa-solid fa-backward-step"></i>
+                        </button>
+                        <button id="playPauseBtn" class="w-14 h-14 rounded-full bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold text-darkBg text-xl font-black flex items-center justify-center hover:scale-110 shadow-[0_0_25px_rgba(0,243,255,0.7)] transition-all">
+                            <i class="fa-solid fa-play ml-1" id="playIcon"></i>
+                        </button>
+                        <button id="nextBtn" class="text-2xl text-white hover:text-neonCyan transition-colors">
+                            <i class="fa-solid fa-forward-step"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-volume-high text-gray-400 text-xs"></i>
+                        <input id="volumeSlider" type="range" min="0" max="1" step="0.05" value="0.8" class="w-20 accent-neonCyan cursor-pointer">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playlist Selector -->
+            <div class="lg:col-span-5 glass-card rounded-3xl p-6 max-h-[480px] overflow-y-auto space-y-3">
+                <h4 class="text-xs font-black tracking-widest text-gray-400 uppercase mb-4 px-2">Featured Mixsets</h4>
+                <div id="playlistContainer" class="space-y-2">
+                    <!-- Javascript Dynamic List -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUTUBE INTEGRATION SECTION -->
+    <section id="youtube" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+            <div>
+                <span class="font-display text-xs font-bold tracking-widest text-rose-500 uppercase">Video Showcase</span>
+                <h3 class="text-3xl sm:text-5xl font-extrabold text-white uppercase">YOUTUBE CHANNEL</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1">Official Channel: <span class="text-rose-400 font-mono">http://www.youtube.com/@deejay_raven_</span></p>
+            </div>
+            <a href="http://www.youtube.com/@deejay_raven_" target="_blank" class="px-6 py-3 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(225,29,72,0.7)] transition-all flex items-center gap-2">
+                <i class="fa-brands fa-youtube text-lg"></i> Subscribe & Watch Channel
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Featured Video Player Container -->
+            <div class="lg:col-span-8 glass-card rounded-3xl p-4 border border-rose-500/20">
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+                    <iframe id="youtubeIframe" class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PL3oW2tjiIxgO9R0tU-U1mO0c11gK-aB1c" title="Deejay Raven YouTube Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Video Playlist/Highlights Grid -->
+            <div class="lg:col-span-4 space-y-4">
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4 cursor-pointer hover:border-rose-500/50 transition-all" onclick="setYoutubeVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <div class="relative w-28 h-18 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=300&q=80" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <i class="fa-solid fa-play text-rose-500 text-sm"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-rose-400 font-bold uppercase">Live Performance</span>
+                        <h5 class="text-xs font-bold text-white line-clamp-2">Deejay Raven Live Afrobeats & Amapiano Club Takeover</h5>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4 cursor-pointer hover:border-rose-500/50 transition-all" onclick="setYoutubeVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <div class="relative w-28 h-18 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=300&q=80" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <i class="fa-solid fa-play text-rose-500 text-sm"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-rose-400 font-bold uppercase">Studio Session</span>
+                        <h5 class="text-xs font-bold text-white line-clamp-2">Dancehall vs Gengetone Mixset 2026 - Deejay Raven</h5>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4 cursor-pointer hover:border-rose-500/50 transition-all" onclick="setYoutubeVideo('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <div class="relative w-28 h-18 rounded-xl overflow-hidden flex-shrink-0 bg-gray-900">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                            <i class="fa-solid fa-play text-rose-500 text-sm"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-rose-400 font-bold uppercase">Festival Vlog</span>
+                        <h5 class="text-xs font-bold text-white line-clamp-2">Mainstage Festival Highlights & Backstage Pass</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM EMBED & FEED GRID SECTION -->
+    <section id="instagram" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+            <div>
+                <span class="font-display text-xs font-bold tracking-widest text-neonPink uppercase">Social Feed</span>
+                <h3 class="text-3xl sm:text-5xl font-extrabold text-white uppercase">INSTAGRAM @deejay_raven.ke</h3>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1">Follow for daily set clips, event schedules, and behind-the-scenes content.</p>
+            </div>
+            <a href="https://www.instagram.com/deejay_raven.ke" target="_blank" class="px-6 py-3 rounded-full bg-gradient-to-r from-neonPink via-purple-600 to-neonGold text-white font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(236,72,153,0.7)] transition-all flex items-center gap-2">
+                <i class="fa-brands fa-instagram text-lg"></i> Follow @deejay_raven.ke
+            </a>
+        </div>
+
+        <!-- Instagram Interactive Reel/Post Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Feed Item 1 -->
+            <div class="group relative rounded-2xl overflow-hidden glass-card aspect-square cursor-pointer" onclick="openInstagramModal('https://www.instagram.com/deejay_raven.ke', 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80', 'Friday Night Rave Set 🔥 #DeejayRaven #Afrobeats')">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                    <div class="flex items-center space-x-3 text-neonPink text-xs font-bold mb-1">
+                        <span><i class="fa-solid fa-heart mr-1"></i> 3.4k</span>
+                        <span><i class="fa-solid fa-comment mr-1"></i> 182</span>
+                    </div>
+                    <p class="text-xs text-white line-clamp-2">Friday Night Rave Set 🔥 #DeejayRaven #Afrobeats</p>
+                </div>
+            </div>
+
+            <!-- Feed Item 2 -->
+            <div class="group relative rounded-2xl overflow-hidden glass-card aspect-square cursor-pointer" onclick="openInstagramModal('https://www.instagram.com/deejay_raven.ke', 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', 'Amapiano Madness with the arena crew! 🎹⚡')">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                    <div class="flex items-center space-x-3 text-neonPink text-xs font-bold mb-1">
+                        <span><i class="fa-solid fa-heart mr-1"></i> 5.1k</span>
+                        <span><i class="fa-solid fa-comment mr-1"></i> 240</span>
+                    </div>
+                    <p class="text-xs text-white line-clamp-2">Amapiano Madness with the arena crew! 🎹⚡</p>
+                </div>
+            </div>
+
+            <!-- Feed Item 3 -->
+            <div class="group relative rounded-2xl overflow-hidden glass-card aspect-square cursor-pointer" onclick="openInstagramModal('https://www.instagram.com/deejay_raven.ke', 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80', 'New mix session loading in the studio 🎧')">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80" alt="Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                    <div class="flex items-center space-x-3 text-neonPink text-xs font-bold mb-1">
+                        <span><i class="fa-solid fa-heart mr-1"></i> 2.8k</span>
+                        <span><i class="fa-solid fa-comment mr-1"></i> 95</span>
+                    </div>
+                    <p class="text-xs text-white line-clamp-2">New mix session loading in the studio 🎧</p>
+                </div>
+            </div>
+
+            <!-- Feed Item 4 -->
+            <div class="group relative rounded-2xl overflow-hidden glass-card aspect-square cursor-pointer" onclick="openInstagramModal('https://www.instagram.com/deejay_raven.ke', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80', 'Beach Party Night Sets! Sunset Vibes 🌅')">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                    <div class="flex items-center space-x-3 text-neonPink text-xs font-bold mb-1">
+                        <span><i class="fa-solid fa-heart mr-1"></i> 4.2k</span>
+                        <span><i class="fa-solid fa-comment mr-1"></i> 156</span>
+                    </div>
+                    <p class="text-xs text-white line-clamp-2">Beach Party Night Sets! Sunset Vibes 🌅</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE AVAILABILITY CALENDAR & STATUS -->
+    <section id="availability" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="text-center space-y-3 mb-12">
+            <h2 class="font-display text-xs font-bold tracking-widest text-neonGold uppercase">Schedule & Dates</h2>
+            <h3 class="text-3xl sm:text-5xl font-extrabold text-white uppercase">LIVE AVAILABILITY STATUS</h3>
+            <div class="w-20 h-1 bg-gradient-to-r from-neonGold to-neonCyan mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <!-- Calendar Preview Card -->
+            <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-gray-800">
+                <div class="flex items-center justify-between mb-6">
+                    <h4 class="text-lg font-black text-white uppercase"><i class="fa-solid fa-calendar-days text-neonGold mr-2"></i> Booking Schedule</h4>
+                    <div class="flex items-center space-x-4 text-xs font-bold">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Booked</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Date Selector Grid -->
+                <div class="grid grid-cols-7 gap-2 text-center text-xs font-mono mb-2">
+                    <span class="text-gray-500">SUN</span>
+                    <span class="text-gray-500">MON</span>
+                    <span class="text-gray-500">TUE</span>
+                    <span class="text-gray-500">WED</span>
+                    <span class="text-gray-500">THU</span>
+                    <span class="text-gray-500">FRI</span>
+                    <span class="text-gray-500">SAT</span>
+                </div>
+
+                <div class="grid grid-cols-7 gap-2 text-center text-sm font-bold">
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">25</div>
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">26</div>
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">27</div>
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">28</div>
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">29</div>
+                    <div class="p-3 rounded-xl bg-darkBg/60 text-gray-600">30</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">1</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">2</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">3</div>
+                    <div class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40">4</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">5</div>
+                    <div class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40">6</div>
+                    <div class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40">7</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">8</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">9</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">10</div>
+                    <div class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40">11</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">12</div>
+                    <div class="p-3 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 cursor-pointer hover:scale-105 transition-all">13</div>
+                    <div class="p-3 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/40">14</div>
+                </div>
+            </div>
+
+            <!-- Upcoming Confirmed Gigs list -->
+            <div class="lg:col-span-5 space-y-4">
+                <h4 class="text-sm font-black text-white uppercase tracking-widest"><i class="fa-solid fa-fire text-neonPink mr-2"></i> Confirmed Tour Gigs</h4>
+                
+                <div class="glass-card rounded-2xl p-4 flex items-center justify-between border-l-4 border-l-neonCyan">
+                    <div>
+                        <span class="text-[10px] text-neonCyan font-black uppercase">Club Showcase</span>
+                        <h5 class="text-sm font-bold text-white">Mainstage VIP Rave Night</h5>
+                        <p class="text-xs text-gray-400">Nairobi, Kenya</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-neonCyan">NOV 04</span>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center justify-between border-l-4 border-l-neonPurple">
+                    <div>
+                        <span class="text-[10px] text-neonPurple font-black uppercase">Private Event</span>
+                        <h5 class="text-sm font-bold text-white">Exclusive Corporate Gala</h5>
+                        <p class="text-xs text-gray-400">Mombasa, Kenya</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-neonPurple">NOV 07</span>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center justify-between border-l-4 border-l-neonGold">
+                    <div>
+                        <span class="text-[10px] text-neonGold font-black uppercase">Festival Headline</span>
+                        <h5 class="text-sm font-bold text-white">AfroPulse Beach Fest</h5>
+                        <p class="text-xs text-gray-400">Diani Beach, Kenya</p>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-neonGold">NOV 14</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENT BOOKING FORM SECTION -->
+    <section id="booking" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 space-y-6">
+                <span class="font-display text-xs font-bold tracking-widest text-neonCyan uppercase">Direct Booking</span>
+                <h3 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">RESERVE DEEJAY RAVEN FOR YOUR EVENT</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Available for headline festival sets, high-profile club appearances, corporate launches, weddings, and private VIP parties. Complete the booking inquiry form below to check date availability and pricing structures.
+                </p>
+
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-neonCyan text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Instagram Direct</span>
+                            <a href="https://www.instagram.com/deejay_raven.ke" target="_blank" class="text-white font-bold hover:text-neonCyan">@deejay_raven.ke</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-rose-500 text-xl">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">YouTube Channel</span>
+                            <a href="http://www.youtube.com/@deejay_raven_" target="_blank" class="text-white font-bold hover:text-rose-400">@deejay_raven_</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="lg:col-span-7 glass-card rounded-3xl p-8 sm:p-10 border border-gray-800 shadow-2xl relative">
+                <form id="bookingForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Organizer / Client Name</label>
+                            <input type="text" required placeholder="e.g. John Doe" class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Phone / WhatsApp</label>
+                            <input type="tel" required placeholder="+254 700 000 000" class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Event Category</label>
+                            <select class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                                <option value="club">Club Night / Rave</option>
+                                <option value="festival">Festival / Concert</option>
+                                <option value="wedding">Wedding Celebration</option>
+                                <option value="private">Private VIP Party</option>
+                                <option value="corporate">Corporate Activation</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Event Date</label>
+                            <input type="date" required class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Venue / City Location</label>
+                            <input type="text" required placeholder="Nairobi, Kenya" class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Estimated Set Duration</label>
+                            <select class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm">
+                                <option>2 Hours Performance</option>
+                                <option>4 Hours Performance</option>
+                                <option>Full Night Residency</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Additional Event Details</label>
+                        <textarea rows="3" placeholder="Specify sound equipment, stage requirements, or sound genres needed..." class="w-full bg-darkBg/90 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition-colors text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-neonCyan via-neonPurple to-neonGold text-darkBg font-black text-xs uppercase tracking-widest hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] hover:scale-105 transition-all">
+                        Submit Booking Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800/80 py-12 px-4 sm:px-6 lg:px-8 z-10 relative bg-darkBg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-compact-disc text-neonCyan text-2xl"></i>
+                <span class="font-display text-xl font-black tracking-widest text-white">DEEJAY RAVEN</span>
+            </div>
+
+            <p class="text-xs text-gray-500">
+                &copy; 2026 DEEJAY RAVEN. All rights reserved.
+            </p>
+
+            <div class="flex space-x-6 text-gray-400">
+                <a href="https://www.instagram.com/deejay_raven.ke" target="_blank" class="hover:text-neonPink transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="http://www.youtube.com/@deejay_raven_" target="_blank" class="hover:text-rose-500 transition-colors"><i class="fa-brands fa-youtube text-lg"></i></a>
+                <a href="https://www.tiktok.com" target="_blank" class="hover:text-neonCyan transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP SYSTEM -->
+    <div id="modalOverlay" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-card max-w-xl w-full rounded-3xl p-6 sm:p-8 relative border border-gray-700 shadow-2xl">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // Mixset Playlist Data
+        const playlist = [
+            {
+                title: "Afrobeats & Amapiano Vibe Vol. 4",
+                genre: "Afrobeats / Amapiano",
+                duration: "3:45",
+                cover: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=500&q=80",
+                audioSrc: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=futuristic-beat-11234.mp3"
+            },
+            {
+                title: "Dancehall & Gengetone Club Takeover",
+                genre: "Dancehall / Gengetone",
+                duration: "2:58",
+                cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&q=80",
+                audioSrc: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=action-cyberpunk-10332.mp3"
+            },
+            {
+                title: "Hip Hop & Afro-House Night Set",
+                genre: "Hip Hop / Afro House",
+                duration: "4:12",
+                cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&q=80",
+                audioSrc: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a8169d.mp3?filename=cyberpunk-2099-10701.mp3"
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        const audio = new Audio();
+        audio.src = playlist[currentTrackIndex].audioSrc;
+
+        // Player DOM Elements
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentTrackTitle = document.getElementById('currentTrackTitle');
+        const currentTrackArtist = document.getElementById('currentTrackArtist');
+        const currentTrackGenre = document.getElementById('currentTrackGenre');
+        const currentTrackCover = document.getElementById('currentTrackCover');
+        const progressBar = document.getElementById('progressBar');
+        const progressBarContainer = document.getElementById('progressBarContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const playlistContainer = document.getElementById('playlistContainer');
+
+        function renderPlaylist() {
+            playlistContainer.innerHTML = '';
+            playlist.forEach((track, index) => {
+                const isActive = index === currentTrackIndex;
+                const item = document.createElement('div');
+                item.className = `flex items-center justify-between p-3 rounded-2xl cursor-pointer transition-all ${
+                    isActive ? 'bg-neonCyan/10 border border-neonCyan/40' : 'hover:bg-darkBg/60 border border-transparent'
+                }`;
+                item.onclick = () => selectTrack(index);
+
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3 truncate">
+                        <img src="${track.cover}" alt="cover" class="w-10 h-10 rounded-xl object-cover">
+                        <div class="truncate">
+                            <h5 class="text-xs font-bold text-white truncate ${isActive ? 'text-neonCyan' : ''}">${track.title}</h5>
+                            <span class="text-[10px] text-gray-400">${track.genre}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 text-xs text-gray-400 font-mono">
+                        <span>${track.duration}</span>
+                        <i class="fa-solid ${isActive && isPlaying ? 'fa-chart-simple text-neonCyan animate-pulse' : 'fa-play'}"></i>
+                    </div>
+                `;
+                playlistContainer.appendChild(item);
+            });
+        }
+
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            const track = playlist[index];
+            audio.src = track.audioSrc;
+            currentTrackTitle.textContent = track.title;
+            currentTrackGenre.textContent = track.genre;
+            currentTrackCover.src = track.cover;
+            renderPlaylist();
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fa-solid fa-play ml-1';
+            } else {
+                audio.play().catch(e => console.log('Playback starting'));
+                playIcon.className = 'fa-solid fa-pause';
+            }
+            isPlaying = !isPlaying;
+            renderPlaylist();
+        }
+
+        function selectTrack(index) {
+            loadTrack(index);
+            isPlaying = false;
+            togglePlay();
+        }
+
+        playPauseBtn.addEventListener('click', togglePlay);
+        prevBtn.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            selectTrack(currentTrackIndex);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            selectTrack(currentTrackIndex);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+
+                const curMins = Math.floor(audio.currentTime / 60);
+                const curSecs = Math.floor(audio.currentTime % 60);
+                const durMins = Math.floor(audio.duration / 60);
+                const durSecs = Math.floor(audio.duration % 60);
+
+                currentTimeEl.textContent = `${curMins}:${curSecs < 10 ? '0' : ''}${curSecs}`;
+                durationEl.textContent = `${durMins}:${durSecs < 10 ? '0' : ''}${durSecs}`;
+            }
+        });
+
+        progressBarContainer.addEventListener('click', (e) => {
+            const width = progressBarContainer.clientWidth;
+            const clickX = e.offsetX;
+            if (audio.duration) {
+                audio.currentTime = (clickX / width) * audio.duration;
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+
+        // CANVAS WAVE VISUALIZER
+        const canvas = document.getElementById('audioVisualizerCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let waveOffset = 0;
+        function drawVisualizer() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const numBars = 32;
+            const barWidth = canvas.width / numBars;
+
+            for (let i = 0; i < numBars; i++) {
+                let barHeight;
+                if (isPlaying) {
+                    barHeight = Math.sin(i * 0.3 + waveOffset) * (canvas.height * 0.35) + (canvas.height * 0.45);
+                } else {
+                    barHeight = Math.sin(i * 0.2) * 4 + 6;
+                }
+
+                const gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
+                gradient.addColorStop(0, '#00f3ff');
+                gradient.addColorStop(0.5, '#a855f7');
+                gradient.addColorStop(1, '#f59e0b');
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth - 2, barHeight);
+            }
+            waveOffset += 0.12;
+            requestAnimationFrame(drawVisualizer);
+        }
+        drawVisualizer();
+
+        // PARTICLES BACKGROUND
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+
+        function resizeBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.radius = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.4 + 0.1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > bgCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > bgCanvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                bgCtx.fillStyle = `rgba(0, 243, 255, ${this.alpha})`;
+                bgCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            bgParticles.push(new Particle());
+        }
+
+        function animateBg() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            bgParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+        // MOBILE MENU UTILITY
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // YOUTUBE VIDEO SELECTOR
+        function setYoutubeVideo(embedUrl) {
+            document.getElementById('youtubeIframe').src = embedUrl;
+        }
+
+        // MODAL SYSTEM
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalContent = document.getElementById('modalContent');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function showModal(html) {
+            modalContent.innerHTML = html;
+            modalOverlay.classList.remove('hidden');
+            setTimeout(() => modalOverlay.classList.remove('opacity-0'), 10);
+        }
+
+        function hideModal() {
+            modalOverlay.classList.add('opacity-0');
+            setTimeout(() => modalOverlay.classList.add('hidden'), 300);
+        }
+
+        closeModalBtn.addEventListener('click', hideModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) hideModal();
+        });
+
+        function openInstagramModal(profileUrl, imgSrc, caption) {
+            showModal(`
+                <div class="space-y-4">
+                    <div class="rounded-2xl overflow-hidden max-h-[60vh]">
+                        <img src="${imgSrc}" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-xs text-gray-300 font-medium">${caption}</p>
+                    <a href="${profileUrl}" target="_blank" class="block w-full py-3 bg-gradient-to-r from-neonPink to-purple-600 text-white font-extrabold text-center rounded-xl text-xs uppercase tracking-widest">
+                        View Post on Instagram @deejay_raven.ke
+                    </a>
+                </div>
+            `);
+        }
+
+        // FORM SUBMISSION
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showModal(`
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-2xl">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white uppercase">Booking Request Sent</h3>
+                    <p class="text-xs text-gray-300">Thank you! Deejay Raven's management team will review your event date and contact you directly via WhatsApp / phone.</p>
+                    <button onclick="hideModal()" class="w-full py-3 bg-gray-800 text-white font-bold rounded-xl text-xs uppercase tracking-wider hover:bg-gray-700">
+                        Close
+                    </button>
+                </div>
+            `);
+            e.target.reset();
+        });
+
+        renderPlaylist();
+    </script>
+</body>
+</html>
